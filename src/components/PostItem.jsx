@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 export default ({index, post}) => {
   return (
-    <div  style={{border: 'black solid 1px', textAlign: 'left'}}>
+    <div  style={{border: 'red solid 2px', textAlign: 'left'}}>
       <div>
         {index + ") Title: " + post.title}
       </div>

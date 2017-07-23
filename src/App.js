@@ -7,8 +7,7 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    this.state = {username: 'TrowwayFiggenstein', comments: [], posts: [], finished: false};
-    // TrowwayFiggenstein
+    this.state = {username: '', comments: [], posts: [], finished: false};
     // , secret: '6U3NK6Teh5KOHnJ_sDbcYaTqeBk'
     this.updateUsername = this.updateUsername.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,18 +25,16 @@ class App extends Component {
   handleButton(buttonType) {
     return () => {
       if (buttonType === 'comments') {
-        this.setState({comments: []});
+        this.setState({posts: [], comments: []});
         this.getUserData('comments');
       } else if (buttonType === 'posts') {
-        this.setState({posts: []});
+        this.setState({posts: [], comments: []});
         this.getUserData('posts');
       }
 
     };
     // e.preventDefault();
   }
-
-
 
   handleSubmit(e) {
     this.setState({posts: [], comments: []});
@@ -164,9 +161,29 @@ class App extends Component {
           <input type='submit' value='Get Data'></input>
         </form>
 
-        <button onClick={ this.handleButton('comments') }>Get Comments</button>
+        <div style={{height: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+          <button
+            onClick={ () => this.setState({username: 'delisauce'})}
+            style={{height: '50px', width: '300px'}}
+              > Test delisauce (2 comments, 0 posts) </button>
+          <button
+            onClick={ () => this.setState({username: 'oldcrook'})}
+            style={{height: '50px', width: '300px'}}
+              > Test (6 comments, 19 posts) </button>
+          <button
+            onClick={ () => this.setState({username: 'iPoopedJustNow'})}
+            style={{height: '50px', width: '300px'}}
+              > Test (504 comments, 14 posts) </button>
+          <button
+            onClick={ () => this.setState({username: 'TrowwayFiggenstein'})}
+            style={{height: '50px', width: '300px'}}
+            > Test (1000 comments, 31 posts) </button>
+        </div>
 
-        <button onClick={ this.handleButton('posts') }>Get Posts</button>
+        <div>
+          <button onClick={ this.handleButton('comments') }>Get Comments (Max 1000)</button>
+          <button onClick={ this.handleButton('posts') }>Get Posts</button>
+        </div>
 
         <div> {this.renderPosts()}</div>
         <div> {this.renderComments()}</div>
