@@ -3,6 +3,7 @@ import CommentItem from './components/CommentItem';
 import PostItem from './components/PostItem';
 import logo from './logo.svg';
 import './App.css';
+import Plot from './components/plot';
 
 class App extends Component {
   constructor() {
@@ -146,7 +147,6 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Reddit Grapher!!</h2>
         </div>
 
@@ -161,28 +161,33 @@ class App extends Component {
           <input type='submit' value='Get Data'></input>
         </form>
 
-        <div style={{height: '200px', display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
           <button
             onClick={ () => this.setState({username: 'delisauce'})}
-            style={{height: '50px', width: '300px'}}
+            style={{height: '50px', width: '200px'}}
               > Test delisauce (2 comments, 0 posts) </button>
           <button
             onClick={ () => this.setState({username: 'oldcrook'})}
-            style={{height: '50px', width: '300px'}}
+            style={{height: '50px', width: '200px'}}
               > Test (6 comments, 19 posts) </button>
           <button
             onClick={ () => this.setState({username: 'iPoopedJustNow'})}
-            style={{height: '50px', width: '300px'}}
+            style={{height: '50px', width: '200px'}}
               > Test (504 comments, 14 posts) </button>
           <button
             onClick={ () => this.setState({username: 'TrowwayFiggenstein'})}
-            style={{height: '50px', width: '300px'}}
+            style={{height: '50px', width: '200px'}}
             > Test (1000 comments, 31 posts) </button>
         </div>
 
-        <div>
+        <div style={{height: '50px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
           <button onClick={ this.handleButton('comments') }>Get Comments (Max 1000)</button>
           <button onClick={ this.handleButton('posts') }>Get Posts</button>
+        </div>
+
+        <div style={{width: '800px', height: '400px', border: '1px solid blue'}}>
+          <Plot  data={this.state.comments}/>
+
         </div>
 
         <div> {this.renderPosts()}</div>
